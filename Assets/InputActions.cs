@@ -99,6 +99,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraMovement"",
+                    ""type"": ""Button"",
+                    ""id"": ""82d07c6e-a713-4008-ae6b-16f56e366507"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,50 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7c4fce6-c51b-494c-a49f-e97e1eb06005"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49d35e19-2638-456b-9910-324abeedd21e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92c73a8b-4cdc-460a-9305-32a27a67a874"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a37ae0bd-cb4d-4284-9c5d-d18f169cec3f"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -121,6 +174,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Main
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
         m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
+        m_Main_CameraMovement = m_Main.FindAction("CameraMovement", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -202,6 +256,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Main;
     private List<IMainActions> m_MainActionsCallbackInterfaces = new List<IMainActions>();
     private readonly InputAction m_Main_Move;
+    private readonly InputAction m_Main_CameraMovement;
     /// <summary>
     /// Provides access to input actions defined in input action map "Main".
     /// </summary>
@@ -217,6 +272,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Main/Move".
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Main_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "Main/CameraMovement".
+        /// </summary>
+        public InputAction @CameraMovement => m_Wrapper.m_Main_CameraMovement;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -246,6 +305,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @CameraMovement.started += instance.OnCameraMovement;
+            @CameraMovement.performed += instance.OnCameraMovement;
+            @CameraMovement.canceled += instance.OnCameraMovement;
         }
 
         /// <summary>
@@ -260,6 +322,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @CameraMovement.started -= instance.OnCameraMovement;
+            @CameraMovement.performed -= instance.OnCameraMovement;
+            @CameraMovement.canceled -= instance.OnCameraMovement;
         }
 
         /// <summary>
@@ -307,5 +372,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "CameraMovement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCameraMovement(InputAction.CallbackContext context);
     }
 }
