@@ -1,9 +1,5 @@
-﻿using Moving;
-using UnityEngine;
-
-namespace Characters
+﻿namespace Characters
 {
-    [RequireComponent(typeof(PlayerMovementController))]
     public class PlayerCharacter : BaseCharacter
     {
         
